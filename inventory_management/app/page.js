@@ -12,16 +12,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import Head from 'next/head';
 
 
-function MyApp({ Component, pageProps }) {
-  return (
-    <>
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Component {...pageProps} />
-    </>
-  );
-}
+
 
 export default function Home() 
 {
@@ -179,7 +170,7 @@ export default function Home()
     setNewQuantity(0);
   }
 
-  const filteredInventory = inventory.filter(item =>
+  const filteredInventory = sortedInventory.filter(item =>
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 

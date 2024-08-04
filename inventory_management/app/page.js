@@ -9,6 +9,19 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { collection, getDoc, getDocs, query, doc, deleteDoc, setDoc,} from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
+import Head from 'next/head';
+
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <>
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Component {...pageProps} />
+    </>
+  );
+}
 
 export default function Home() 
 {

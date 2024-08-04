@@ -105,3 +105,7 @@ node_modules/
 
 # dataconnect generated files
 .dataconnect
+
+node_modules
+.next
+.env.local

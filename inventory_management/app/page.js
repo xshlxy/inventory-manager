@@ -218,225 +218,226 @@ export default function Home()
 
   return (
 <Container maxWidth="md" sx={{ mt: 4, bgcolor: '#F9F9F9', borderRadius: '16px', p: 4, boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)' }}>
-      <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
-        <Typography variant="h4" align="center" gutterBottom sx={{ color: '#FF6F61', fontFamily: 'Comic Sans MS, cursive', fontWeight: 'bold' }}>
-          Inventory Management App
-        </Typography>
-        {authError && <Alert severity="error">{authError}</Alert>}
-        {!user ? (
-          <Stack spacing={2} width="100%" maxWidth="400px">
-            <Typography variant="h5" align="center">Sign In</Typography>
-            <TextField
-              placeholder={emailPlaceholder}
-              variant="outlined"
-              fullWidth
-              value={email}
-              onFocus={() => setEmailPlaceholder('')}
-              onBlur={() => setEmailPlaceholder('Email')}
-              onChange={(e) => setEmail(e.target.value)}
-              sx={{
-                '& .MuiOutlinedInput-root': {
-                  borderRadius: '12px',
-                  background: '#FFFFFF',
-                  '& fieldset': {
-                    borderColor: '#FF6F61',
-                  },
-                  '&:hover fieldset': {
-                    borderColor: '#FF3F5C',
-                  },
-                },
-                '& .MuiInputBase-input': {
-                  fontFamily: 'Comic Sans MS, cursive',
-                  color: '#333',
-                },
-              }}
-            />
-            <TextField
-              placeholder={passwordPlaceholder}
-              variant="outlined"
-              type="password"
-              fullWidth
-              value={password}
-              onFocus={() => setPasswordPlaceholder('')}
-              onBlur={() => setPasswordPlaceholder('Password')}
-              onChange={(e) => setPassword(e.target.value)}
-              sx={{
-                '& .MuiOutlinedInput-root': {
-                  borderRadius: '12px',
-                  background: '#FFFFFF',
-                  '& fieldset': {
-                    borderColor: '#FF6F61',
-                  },
-                  '&:hover fieldset': {
-                    borderColor: '#FF3F5C',
-                  },
-                },
-                '& .MuiInputBase-input': {
-                  fontFamily: 'Comic Sans MS, cursive',
-                  color: '#333',
-                },
-              }}
-            />
-            <Button variant="contained" color="primary" fullWidth onClick={handleSignUp}
-            sx={{
-              background: '#FF6F61',
-              color: '#FFF',
+  <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
+    <Typography variant="h4" align="center" gutterBottom sx={{ color: '#FF6F61', fontFamily: 'Arial, sans-serif', fontWeight: 'bold' }}>
+      Inventory Management App
+    </Typography>
+    {authError && <Alert severity="error">{authError}</Alert>}
+    {!user ? (
+      <Stack spacing={2} width="100%" maxWidth="400px">
+        <Typography variant="h5" align="center">Sign In</Typography>
+        <TextField
+          placeholder={emailPlaceholder}
+          variant="outlined"
+          fullWidth
+          value={email}
+          onFocus={() => setEmailPlaceholder('')}
+          onBlur={() => setEmailPlaceholder('Email')}
+          onChange={(e) => setEmail(e.target.value)}
+          sx={{
+            '& .MuiOutlinedInput-root': {
               borderRadius: '12px',
-              textTransform: 'none',
-              transition: 'background 0.3s ease',
-              '&:hover': {
-                background: '#FF3F5C',
+              background: '#FFFFFF',
+              '& fieldset': {
+                borderColor: '#FF6F61',
               },
-            }}
-            >Sign Up</Button>
-            <Button variant="contained" color="secondary" fullWidth onClick={handleSignIn}
-            sx={{
-              backgroundColor: '#FF8A80',
-              color: '#FFF',
-              '&:hover': {
-                backgroundColor: '#FF6D6D',
+              '&:hover fieldset': {
+                borderColor: '#FF3F5C',
               },
+            },
+            '& .MuiInputBase-input': {
+              fontFamily: 'Arial, sans-serif',
+              color: '#333',
+            },
+          }}
+        />
+        <TextField
+          placeholder={passwordPlaceholder}
+          variant="outlined"
+          type="password"
+          fullWidth
+          value={password}
+          onFocus={() => setPasswordPlaceholder('')}
+          onBlur={() => setPasswordPlaceholder('Password')}
+          onChange={(e) => setPassword(e.target.value)}
+          sx={{
+            '& .MuiOutlinedInput-root': {
               borderRadius: '12px',
-              textTransform: 'none',
-            }}
-            >Sign In</Button>
-          </Stack>
-        ) : (
-          <>
-            <Stack spacing={2} width="100%" maxWidth="400px" mb={4}>
-              <Typography variant="h5" align="center">Welcome</Typography>
-              <Button variant="contained" color="error" fullWidth onClick={handleSignOut}>Sign Out</Button>
-            </Stack>
+              background: '#FFFFFF',
+              '& fieldset': {
+                borderColor: '#FF6F61',
+              },
+              '&:hover fieldset': {
+                borderColor: '#FF3F5C',
+              },
+            },
+            '& .MuiInputBase-input': {
+              fontFamily: 'Arial, sans-serif',
+              color: '#333',
+            },
+          }}
+        />
+        <Button variant="contained" color="primary" fullWidth onClick={handleSignUp}
+        sx={{
+          background: '#FF6F61',
+          color: '#FFF',
+          borderRadius: '12px',
+          textTransform: 'none',
+          transition: 'background 0.3s ease',
+          '&:hover': {
+            background: '#FF3F5C',
+          },
+        }}
+        >Sign Up</Button>
+        <Button variant="contained" color="secondary" fullWidth onClick={handleSignIn}
+        sx={{
+          backgroundColor: '#FF8A80',
+          color: '#FFF',
+          '&:hover': {
+            backgroundColor: '#FF6D6D',
+          },
+          borderRadius: '12px',
+          textTransform: 'none',
+        }}
+        >Sign In</Button>
+      </Stack>
+    ) : (
+      <>
+        <Stack spacing={2} width="100%" maxWidth="400px" mb={4}>
+          <Typography variant="h5" align="center">Welcome</Typography>
+          <Button variant="contained" color="error" fullWidth onClick={handleSignOut}>Sign Out</Button>
+        </Stack>
 
-            <Modal open={open} onClose={handleClose}>
-              <Box
-                position="absolute"
-                top="50%"
-                left="50%"
-                width="400px"
-                bgcolor="#FFF"
-                borderRadius="16px"
-                boxShadow="0px 4px 12px rgba(0, 0, 0, 0.1)"
-                p={4}
-                display="flex"
-                flexDirection="column"
-                gap={3}
-                sx={{ transform: 'translate(-50%, -50%)' }}
+        <Modal open={open} onClose={handleClose}>
+          <Box
+            position="absolute"
+            top="50%"
+            left="50%"
+            width="400px"
+            bgcolor="#FFF"
+            borderRadius="16px"
+            boxShadow="0px 4px 12px rgba(0, 0, 0, 0.1)"
+            p={4}
+            display="flex"
+            flexDirection="column"
+            gap={3}
+            sx={{ transform: 'translate(-50%, -50%)' }}
+          >
+            <Typography variant="h6" gutterBottom sx={{fontFamily: 'Arial, sans-serif', color: '#FF6F61'}}>Add Item</Typography>
+            <Stack width="100%" direction="row" spacing={2}>
+              <TextField
+                variant="outlined"
+                fullWidth
+                value={itemName}
+                onChange={(e) => setItemName(e.target.value)}
+                placeholder="Item name"
+              />
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                  addItem(itemName);
+                  setItemName('');
+                  handleClose();
+                }}
+                sx={{ background: '#FF6F61', '&:hover': { background: '#FF3F5C' } }}
               >
-                <Typography variant="h6" gutterBottom sx={{fontFamily: 'Comic Sans MS, cursive', color: '#FF6F61'}}>Add Item</Typography>
-                <Stack width="100%" direction="row" spacing={2}>
-                  <TextField
-                    variant="outlined"
-                    fullWidth
-                    value={itemName}
-                    onChange={(e) => setItemName(e.target.value)}
-                    placeholder="Item name"
-                  />
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => {
-                      addItem(itemName);
-                      setItemName('');
-                      handleClose();
-                    }}
-                    sx={{ background: '#FF6F61', '&:hover': { background: '#FF3F5C' } }}
-                  >
-                    Add
-                  </Button>
-                </Stack>
-              </Box>
-            </Modal>
-
-            <Dialog open={editOpen} onClose={handleEditClose}>
-              <DialogTitle sx={{ fontFamily: 'Comic Sans MS, cursive', color: '#FF6F61' }}>Edit Quantity</DialogTitle>
-              <DialogContent>
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  label={newQuantity === 0 ? "New Quantity" : ""}
-                  type="number"
-                  fullWidth
-                  variant="outlined"
-                  value={newQuantity}
-                  onChange={(e) => setNewQuantity(parseInt(e.target.value))}
-                  sx={{ fontFamily: 'Comic Sans MS, cursive', '& .MuiOutlinedInput-root': { background: '#FFF' } }}
-                />
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={handleEditClose}>Cancel</Button>
-                <Button onClick={handleEdit} color="primary">Save</Button>
-              </DialogActions>
-            </Dialog>
-
-            <Stack direction="row" spacing={2} mb={2} width="100%" sx={{ justifyContent: 'center', alignItems: 'center' }}>
-              <Button variant="contained" color="primary" onClick={handleOpen} startIcon={<AddIcon />} sx={{ background: '#FF6F61', '&:hover': { background: '#FF3F5C' } }}>Add Item</Button>
-              <FormControl variant="outlined" size="small">
-                <InputLabel>Sort By</InputLabel>
-                <Select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  label="Sort By"
-                >
-                  <MenuItem value="name">Name</MenuItem>
-                  <MenuItem value="quantity">Quantity</MenuItem>
-                </Select>
-              </FormControl>
+                Add
+              </Button>
             </Stack>
+          </Box>
+        </Modal>
 
+        <Dialog open={editOpen} onClose={handleEditClose}>
+          <DialogTitle sx={{ fontFamily: 'Arial, sans-serif', color: '#FF6F61' }}>Edit Quantity</DialogTitle>
+          <DialogContent>
             <TextField
-              variant="outlined"
+              autoFocus
+              margin="dense"
+              label={newQuantity === 0 ? "New Quantity" : ""}
+              type="number"
               fullWidth
-              placeholder="Search items..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              sx={{ mb: 2, '& .MuiOutlinedInput-root': { borderRadius: '12px' } }}
+              variant="outlined"
+              value={newQuantity}
+              onChange={(e) => setNewQuantity(parseInt(e.target.value))}
+              sx={{ fontFamily: 'Arial, sans-serif', '& .MuiOutlinedInput-root': { background: '#FFF' } }}
             />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleEditClose}>Cancel</Button>
+            <Button onClick={handleEdit} color="primary">Save</Button>
+          </DialogActions>
+        </Dialog>
 
-            <Grid container spacing={2}>
-              {filteredInventory.map((item) => (
-                <Grid item xs={12} sm={6} md={4} key={item.name}>
-                  <Box
-                    border="1px solid"
-                    borderColor="divider"
-                    borderRadius="12px"
-                    p={2}
-                    display="flex"
-                    justifyContent="space-between"
-                    alignItems="center"
-                    sx={{ 
-                      bgcolor: '#FFF',
-                      boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
-                      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                      '&:hover': {
-                        transform: 'scale(1.02)',
-                        boxShadow: '0px 8px 16px rgba(0, 0, 0, 0.1)',
-                      },                    
-                    }}
-                  >
-                    <Typography variant="body1" sx={{ fontFamily: 'Comic Sans MS, cursive', color: '#FF6F61' }}>{item.name}</Typography>
-                    <Stack direction="row" spacing={1}>
-                      <IconButton color="primary" onClick={() => handleEditOpen(item.name, item.quantity)}>
-                        <EditIcon />
-                      </IconButton>
-                      <IconButton color="success" onClick={() => addItem(item.name)}>
-                        <AddIcon />
-                      </IconButton>
-                      <IconButton color="error" onClick={() => removeItem(item.name)}>
-                        <RemoveIcon />
-                      </IconButton>
-                      <IconButton color="error" onClick={() => deleteItem(item.name)}>
-                        <DeleteIcon />
-                      </IconButton>
-                    </Stack>
-                    <Typography variant="body2" color="text.secondary">{item.quantity}</Typography>
-                  </Box>
-                </Grid>
-              ))}
+        <Stack direction="row" spacing={2} mb={2} width="100%" sx={{ justifyContent: 'center', alignItems: 'center' }}>
+          <Button variant="contained" color="primary" onClick={handleOpen} startIcon={<AddIcon />} sx={{ background: '#FF6F61', '&:hover': { background: '#FF3F5C' } }}>Add Item</Button>
+          <FormControl variant="outlined" size="small">
+            <InputLabel>Sort By</InputLabel>
+            <Select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              label="Sort By"
+            >
+              <MenuItem value="name">Name</MenuItem>
+              <MenuItem value="quantity">Quantity</MenuItem>
+            </Select>
+          </FormControl>
+        </Stack>
+
+        <TextField
+          variant="outlined"
+          fullWidth
+          placeholder="Search items..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          sx={{ mb: 2, '& .MuiOutlinedInput-root': { borderRadius: '12px' } }}
+        />
+
+        <Grid container spacing={2}>
+          {filteredInventory.map((item) => (
+            <Grid item xs={12} sm={6} md={4} key={item.name}>
+              <Box
+                border="1px solid"
+                borderColor="divider"
+                borderRadius="12px"
+                p={2}
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                sx={{ 
+                  bgcolor: '#FFF',
+                  boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                  '&:hover': {
+                    transform: 'scale(1.02)',
+                    boxShadow: '0px 8px 16px rgba(0, 0, 0, 0.1)',
+                  },                    
+                }}
+              >
+                <Typography variant="body1" sx={{ fontFamily: 'Arial, sans-serif', color: '#FF6F61' }}>{item.name}</Typography>
+                <Stack direction="row" spacing={1}>
+                  <IconButton color="primary" onClick={() => handleEditOpen(item.name, item.quantity)}>
+                    <EditIcon />
+                  </IconButton>
+                  <IconButton color="success" onClick={() => addItem(item.name)}>
+                    <AddIcon />
+                  </IconButton>
+                  <IconButton color="error" onClick={() => removeItem(item.name)}>
+                    <RemoveIcon />
+                  </IconButton>
+                  <IconButton color="error" onClick={() => deleteItem(item.name)}>
+                    <DeleteIcon />
+                  </IconButton>
+                </Stack>
+                <Typography variant="body2" color="text.secondary">{item.quantity}</Typography>
+              </Box>
             </Grid>
-          </>
-        )}
-      </Box>
-    </Container>
+          ))}
+        </Grid>
+      </>
+    )}
+  </Box>
+</Container>
+
   );
 }

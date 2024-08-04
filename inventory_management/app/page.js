@@ -127,7 +127,7 @@ export default function Home()
       updateInventory();
       setShouldUpdateInventory(false);
     }
-  }, [shouldUpdateInventory, user, updateInventory]);
+  }, [shouldUpdateInventory, user]);
   
 
   useEffect(() => {
@@ -140,8 +140,7 @@ export default function Home()
         }
         return 0;
       });
-
-      setInventory(sortedInventory);
+      setSortedInventory(sortedInventory);
     }
   }, [sortBy, inventory]);
 
@@ -211,6 +210,10 @@ export default function Home()
     }
   };
 
+  useEffect(() => {
+    console.log('Firestore:', firestore);
+    console.log('Auth:', auth);
+  }, []);
 
 
   return (

@@ -217,9 +217,9 @@ export default function Home()
 
 
   return (
-<Container maxWidth="md" sx={{ mt: 4 }}>
+<Container maxWidth="md" sx={{ mt: 4, bgcolor: '#F9F9F9', borderRadius: '16px', p: 4, boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)' }}>
       <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
-        <Typography variant="h4" align="center" gutterBottom>
+        <Typography variant="h4" align="center" gutterBottom sx={{ color: '#FF6F61', fontFamily: 'Comic Sans MS, cursive', fontWeight: 'bold' }}>
           Inventory Management App
         </Typography>
         {authError && <Alert severity="error">{authError}</Alert>}
@@ -234,6 +234,22 @@ export default function Home()
               onFocus={() => setEmailPlaceholder('')}
               onBlur={() => setEmailPlaceholder('Email')}
               onChange={(e) => setEmail(e.target.value)}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  borderRadius: '12px',
+                  background: '#FFFFFF',
+                  '& fieldset': {
+                    borderColor: '#FF6F61',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: '#FF3F5C',
+                  },
+                },
+                '& .MuiInputBase-input': {
+                  fontFamily: 'Comic Sans MS, cursive',
+                  color: '#333',
+                },
+              }}
             />
             <TextField
               placeholder={passwordPlaceholder}
@@ -244,9 +260,46 @@ export default function Home()
               onFocus={() => setPasswordPlaceholder('')}
               onBlur={() => setPasswordPlaceholder('Password')}
               onChange={(e) => setPassword(e.target.value)}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  borderRadius: '12px',
+                  background: '#FFFFFF',
+                  '& fieldset': {
+                    borderColor: '#FF6F61',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: '#FF3F5C',
+                  },
+                },
+                '& .MuiInputBase-input': {
+                  fontFamily: 'Comic Sans MS, cursive',
+                  color: '#333',
+                },
+              }}
             />
-            <Button variant="contained" color="primary" fullWidth onClick={handleSignUp}>Sign Up</Button>
-            <Button variant="contained" color="secondary" fullWidth onClick={handleSignIn}>Sign In</Button>
+            <Button variant="contained" color="primary" fullWidth onClick={handleSignUp}
+            sx={{
+              background: '#FF6F61',
+              color: '#FFF',
+              borderRadius: '12px',
+              textTransform: 'none',
+              transition: 'background 0.3s ease',
+              '&:hover': {
+                background: '#FF3F5C',
+              },
+            }}
+            >Sign Up</Button>
+            <Button variant="contained" color="secondary" fullWidth onClick={handleSignIn}
+            sx={{
+              backgroundColor: '#FF8A80',
+              color: '#FFF',
+              '&:hover': {
+                backgroundColor: '#FF6D6D',
+              },
+              borderRadius: '12px',
+              textTransform: 'none',
+            }}
+            >Sign In</Button>
           </Stack>
         ) : (
           <>
@@ -261,16 +314,16 @@ export default function Home()
                 top="50%"
                 left="50%"
                 width="400px"
-                bgcolor="background.paper"
-                borderRadius="8px"
-                boxShadow={24}
+                bgcolor="#FFF"
+                borderRadius="16px"
+                boxShadow="0px 4px 12px rgba(0, 0, 0, 0.1)"
                 p={4}
                 display="flex"
                 flexDirection="column"
                 gap={3}
                 sx={{ transform: 'translate(-50%, -50%)' }}
               >
-                <Typography variant="h6">Add Item</Typography>
+                <Typography variant="h6" gutterBottom sx={{fontFamily: 'Comic Sans MS, cursive', color: '#FF6F61'}}>Add Item</Typography>
                 <Stack width="100%" direction="row" spacing={2}>
                   <TextField
                     variant="outlined"
@@ -287,6 +340,7 @@ export default function Home()
                       setItemName('');
                       handleClose();
                     }}
+                    sx={{ background: '#FF6F61', '&:hover': { background: '#FF3F5C' } }}
                   >
                     Add
                   </Button>
@@ -295,9 +349,8 @@ export default function Home()
             </Modal>
 
             <Dialog open={editOpen} onClose={handleEditClose}>
-              <DialogTitle>Edit Quantity</DialogTitle>
+              <DialogTitle sx={{ fontFamily: 'Comic Sans MS, cursive', color: '#FF6F61' }}>Edit Quantity</DialogTitle>
               <DialogContent>
-              
                 <TextField
                   autoFocus
                   margin="dense"
@@ -307,15 +360,8 @@ export default function Home()
                   variant="outlined"
                   value={newQuantity}
                   onChange={(e) => setNewQuantity(parseInt(e.target.value))}
-                  placeholder="New Quantity"
-                  InputLabelProps={{ shrink: false }}
-                  InputProps={{
-                    startAdornment: newQuantity === 0 ? (
-                      <InputAdornment position="start">New Quantity</InputAdornment>
-                    ) : null,
-                  }}
+                  sx={{ fontFamily: 'Comic Sans MS, cursive', '& .MuiOutlinedInput-root': { background: '#FFF' } }}
                 />
-                
               </DialogContent>
               <DialogActions>
                 <Button onClick={handleEditClose}>Cancel</Button>
@@ -324,8 +370,7 @@ export default function Home()
             </Dialog>
 
             <Stack direction="row" spacing={2} mb={2} width="100%" sx={{ justifyContent: 'center', alignItems: 'center' }}>
-              
-              <Button variant="contained" color="primary" onClick={handleOpen} startIcon={<AddIcon />}>Add Item</Button>
+              <Button variant="contained" color="primary" onClick={handleOpen} startIcon={<AddIcon />} sx={{ background: '#FF6F61', '&:hover': { background: '#FF3F5C' } }}>Add Item</Button>
               <FormControl variant="outlined" size="small">
                 <InputLabel>Sort By</InputLabel>
                 <Select
@@ -345,7 +390,7 @@ export default function Home()
               placeholder="Search items..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              sx={{ mb: 2 }}
+              sx={{ mb: 2, '& .MuiOutlinedInput-root': { borderRadius: '12px' } }}
             />
 
             <Grid container spacing={2}>
@@ -354,14 +399,22 @@ export default function Home()
                   <Box
                     border="1px solid"
                     borderColor="divider"
-                    borderRadius="8px"
+                    borderRadius="12px"
                     p={2}
                     display="flex"
                     justifyContent="space-between"
                     alignItems="center"
-                    sx={{ backgroundColor: 'background.default' }}
+                    sx={{ 
+                      bgcolor: '#FFF',
+                      boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+                      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                      '&:hover': {
+                        transform: 'scale(1.02)',
+                        boxShadow: '0px 8px 16px rgba(0, 0, 0, 0.1)',
+                      },                    
+                    }}
                   >
-                    <Typography variant="body1">{item.name}</Typography>
+                    <Typography variant="body1" sx={{ fontFamily: 'Comic Sans MS, cursive', color: '#FF6F61' }}>{item.name}</Typography>
                     <Stack direction="row" spacing={1}>
                       <IconButton color="primary" onClick={() => handleEditOpen(item.name, item.quantity)}>
                         <EditIcon />

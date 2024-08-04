@@ -20,7 +20,8 @@ export default function Home()
   const [sortBy, setSortBy] = useState('name');
   const [editItem, setEditItem] = useState(null);
   const [newQuantity, setNewQuantity] = useState(0);
-  
+  const [sortedInventory, setSortedInventory] = useState([]);
+
   //user authentication
   const [user, setUser] = useState(null);
   const [userName, setUserName] = useState('');
@@ -102,7 +103,7 @@ export default function Home()
     const fetchUserData = async (user) => {
       if (user) {
         try {
-          const docRef = doc(firestore,` users/${user.uid}`);
+          const docRef = doc(firestore, `users/${user.uid}`);
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
             setUserName(docSnap.data().name); // Fetch the user's name
@@ -112,12 +113,12 @@ export default function Home()
         }
       }
     };
-  
+
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setUser(user);
       await fetchUserData(user); // Call the async function
     });
-  
+
     return () => unsubscribe();
   }, []);
 
@@ -126,23 +127,23 @@ export default function Home()
       updateInventory();
       setShouldUpdateInventory(false);
     }
-  }, [shouldUpdateInventory, user]);
+  }, [shouldUpdateInventory, user, updateInventory]);
   
 
   useEffect(() => {
     if (inventory.length > 0) {
-    const sortedInventory = [...inventory].sort((a, b) => {
-      if (sortBy === 'name') {
-        return a.name.localeCompare(b.name);
-      } else if (sortBy === 'quantity') {
-        return b.quantity - a.quantity;
-      }
-      return 0;
-     });
+      const sortedInventory = [...inventory].sort((a, b) => {
+        if (sortBy === 'name') {
+          return a.name.localeCompare(b.name);
+        } else if (sortBy === 'quantity') {
+          return b.quantity - a.quantity;
+        }
+        return 0;
+      });
 
       setInventory(sortedInventory);
     }
-  }, [sortBy]);
+  }, [sortBy, inventory]);
 
   const deleteItem = async (item) => {
     if (user) {
